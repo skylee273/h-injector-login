@@ -1,29 +1,21 @@
-
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
-
 }
 
 android {
-    namespace = "com.example.hinjectlogin"
-    compileSdk = 35
+    namespace = "com.example.practice"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.hinjectlogin"
+        applicationId = "com.example.practice"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
@@ -36,25 +28,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-
-    kapt {
-        correctErrorTypes = true
-    }
-
 }
 
 dependencies {
@@ -74,15 +56,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    implementation(libs.datastore)
-
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.serialization)
-
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.okhttp)
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
 }
