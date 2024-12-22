@@ -28,7 +28,11 @@ import kotlinx.coroutines.launch
 
 class UserInfoActivity : ComponentActivity() {
 
-    private val localDataSource = UserLocalDataSource(this)
+    // private val localDataSource = UserLocalDataSource(this)
+
+    private val localDataSource : UserLocalDataSource by lazy {
+        (application as App).appContainer.createUserLocalDataSource()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

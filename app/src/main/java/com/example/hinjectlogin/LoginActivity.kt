@@ -22,30 +22,19 @@ import retrofit2.Retrofit
 
 class LoginActivity : ComponentActivity() {
 
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("http://localhost:8080/api/")
-        .addConverterFactory(Json.asConverterFactory("application/json; charset=UTF8".toMediaType()))
-        .build()
-
-    private val loginRetrofitService = retrofit.create(LoginRetrofitService::class.java)
-    private val localDataSource = UserLocalDataSource(this)
-    private val remoteDataSource = UserRemoteDataSource(loginRetrofitService)
-    private val userDataRepository = UserDataRepository(localDataSource, remoteDataSource)
+    private val container : AppContainer by lazy {
+        (this.application as App).appContainer
+    }
 
     private val viewModel: LoginViewModel by viewModels {
-        object : AbstractSavedStateViewModelFactory() {
-            override fun <T : ViewModel> create(
-                key: String, modelClass: Class<T>, handle: SavedStateHandle
-            ): T {
-                return LoginViewModel(userDataRepository) as T
-            }
-
-        }
+        container.loginContainer!!.createLoginViewModelFactory()
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        container.loginContainer = LoginContainer(container)
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
@@ -81,6 +70,11 @@ class LoginActivity : ComponentActivity() {
             }
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        container.loginContainer = null
     }
 
 }
