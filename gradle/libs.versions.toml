@@ -1,0 +1,48 @@
+# [versions] 섹션: 프로젝트에서 사용하는 라이브러리 및 플러그인의 버전을 정의
+[versions]
+agp = "8.7.3" # Android Gradle Plugin 버전
+hiltAndroid = "2.48.1"
+kotlin = "2.0.0" # Kotlin 플러그인 버전
+coreKtx = "1.15.0" # Android Core KTX 라이브러리 버전
+junit = "4.13.2" # JUnit 테스트 프레임워크 버전
+junitVersion = "1.2.1" # AndroidX JUnit 확장 라이브러리 버전
+espressoCore = "3.6.1" # Espresso UI 테스트 프레임워크 버전
+lifecycleRuntimeKtx = "2.8.7" # Android Lifecycle KTX 라이브러리 버전
+activityCompose = "1.9.3" # Jetpack Compose 기반 Activity 라이브러리 버전
+composeBom = "2024.12.01" # Compose BOM(Bill of Materials) 버전
+retrofit = "2.9.0" # Retrofit 네트워크 라이브러리 버전
+
+# [libraries] 섹션: 사용 중인 라이브러리 의존성을 정의
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" } # Android Core KTX 라이브러리
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
+junit = { group = "junit", name = "junit", version.ref = "junit" } # 단위 테스트를 위한 JUnit 라이브러리
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" } # AndroidX JUnit 확장 라이브러리
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" } # UI 테스트 자동화를 위한 Espresso
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" } # Android Lifecycle 코틀린 확장 기능 제공
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" } # Jetpack Compose와 Activity 통합 지원
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" } # Compose 의존성 버전 관리
+androidx-ui = { group = "androidx.compose.ui", name = "ui" } # Compose UI 구성 요소
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" } # Compose 그래픽 및 렌더링 도구
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" } # Compose UI 디버깅 도구
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" } # Compose UI 프리뷰 지원
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" } # Compose UI 테스트 Manifest 지원
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" } # Compose UI 테스트를 위한 JUnit 4
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" } # Material Design 3 구현
+
+datastore = { module = "androidx.datastore:datastore-preferences", version = "1.1.1" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version = "1.0.0"}
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.12.0"}
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.5.0"}
+# [plugins] 섹션: 프로젝트에서 사용하는 Gradle 플러그인을 정의
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" } # Android 애플리케이션 빌드 플러그인
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" } # Kotlin Android 플러그인
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" } # Kotlin Compose 플러그인
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+# [bundles] 섹션: 라이브러리 묶음을 정의할 수 있는 공간 (현재 비어 있음)
+[bundles]
+# 예: 관련된 라이브러리를 하나로 묶어서 관리 가능
+# ui-components = ["androidx-ui", "androidx-ui-tooling", "androidx-ui-tooling-preview"]
